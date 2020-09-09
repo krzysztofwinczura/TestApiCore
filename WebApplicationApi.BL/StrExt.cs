@@ -1,10 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace System
+﻿namespace System
 {
-   public static class StrExt
+    public static class StrExt
     {
         public static double GetDouble(this string s)
         {
