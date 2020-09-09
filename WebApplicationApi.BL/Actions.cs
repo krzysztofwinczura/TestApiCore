@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Text;
 
 namespace WebApplicationApi.BL
 {
@@ -27,7 +28,12 @@ namespace WebApplicationApi.BL
 
         public string CurveApproximation(string arg1, string arg2)
         {
-            throw new NotImplementedException();
+            double[] xdata = arg1.GeDoubleTable();
+            double[] ydata = arg2.GeDoubleTable();
+
+            double[] p = MathNet.Numerics.Fit.Polynomial(xdata, ydata, 3); // polynomial of order 3
+                         
+            return StrExt.DaubleTableToString(p);
         }
 
         public string CurveInterpolation(string arg1, string arg2)

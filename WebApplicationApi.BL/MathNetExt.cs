@@ -11,6 +11,7 @@ namespace MathNet
         /// Non-linear least-squares fitting the points (x,y) to an arbitrary function y : x -> f(p, x),
         /// returning its best fitting parameter p.
         /// https://github.com/mathnet/mathnet-numerics/issues/597
+        /// http://kb.en-mat.com/Curve%20Fitting_%20Linear%20Regression.pdf
         /// </summary>
         public static double Curve(double[] x, double[] y, Func<double, double, double> f, double initialGuess, double tolerance = 1e-8, int maxIterations = 1000)
         {

@@ -1,4 +1,5 @@
 using NUnit.Framework;
+using System;
 using WebApplicationApi.BL;
 
 namespace WebApplicationApi.Test
@@ -44,6 +45,18 @@ namespace WebApplicationApi.Test
         {
             var resAdd = _actions.Multiplication(f1, f2);
             Assert.AreEqual(res, resAdd);
+        }
+
+        [TestCase("10;20;30", "15;20;25", "3")]
+        public void TestCurveApproximationM(string f1, string f2, string res)
+        {
+              Assert.Catch<ArgumentException>(() => _actions.CurveApproximation(f1, f2));             
+        }
+
+        [TestCase("10;20;30", "15;20;25", "3")]
+        public void TestCurveInterpolationM(string f1, string f2, string res)
+        {
+              Assert.Catch<NotImplementedException>(() => _actions.CurveInterpolation(f1, f2));             
         }
     }
 }
