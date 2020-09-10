@@ -10,6 +10,7 @@ namespace WebApplicationApi.Controllers
     public class TestApiController : ControllerBase
     {
         private readonly IActions _iActions;
+
         public TestApiController(IActions iActions)
         {
             _iActions = iActions;
@@ -17,7 +18,14 @@ namespace WebApplicationApi.Controllers
 
         [HttpGet("byAddition")]
         [ActionName("Addition")]
-        public string GetAddition([FromQuery] string firstArgument, [FromQuery] string secondArgument, [FromQuery] string thirdArgument)
+        public string GetAddition([FromQuery] string firstArgument, [FromQuery] string secondArgument)
+        {
+            return _iActions.Addition(firstArgument, secondArgument);
+        }
+
+        [HttpGet("byAdditionList")]
+        [ActionName("AdditionList")]
+        public string GetAdditionList([FromQuery] string firstArgument, [FromQuery] string[] secondArgument)
         {
             return _iActions.Addition(firstArgument, secondArgument);
         }
@@ -29,6 +37,13 @@ namespace WebApplicationApi.Controllers
             return _iActions.Subtraction(firstArgument, secondArgument);
         }
 
+        [HttpGet("bySubtractionList")]
+        [ActionName("SubtractionList")]
+        public string GetSubtractionList([FromQuery] string firstArgument, [FromQuery] string[] secondArgument)
+        {
+            return _iActions.Subtraction(firstArgument, secondArgument);
+        }
+
         [HttpGet("byMultiplication")]
         [ActionName("Multiplication")]
         public string GetMultiplication([FromQuery] string firstArgument, [FromQuery] string secondArgument)
@@ -36,9 +51,23 @@ namespace WebApplicationApi.Controllers
             return _iActions.Multiplication(firstArgument, secondArgument);
         }
 
+        [HttpGet("byMultiplicationList")]
+        [ActionName("MultiplicationList")]
+        public string GetMultiplicationList([FromQuery] string firstArgument, [FromQuery] string[] secondArgument)
+        {
+            return _iActions.Multiplication(firstArgument, secondArgument);
+        }
+
         [HttpGet("byDivision")]
         [ActionName("Division")]
         public string GetDivision([FromQuery] string firstArgument, [FromQuery] string secondArgument)
+        {
+            return _iActions.Division(firstArgument, secondArgument);
+        }
+
+        [HttpGet("byDivisionList")]
+        [ActionName("DivisionList")]
+        public string GetDivisionList([FromQuery] string firstArgument, [FromQuery] string[] secondArgument)
         {
             return _iActions.Division(firstArgument, secondArgument);
         }

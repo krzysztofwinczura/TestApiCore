@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Text;
 
 namespace WebApplicationApi.BL
 {
@@ -32,13 +31,57 @@ namespace WebApplicationApi.BL
             double[] ydata = arg2.GeDoubleTable();
 
             double[] p = MathNet.Numerics.Fit.Polynomial(xdata, ydata, 3); // polynomial of order 3
-                         
+
             return StrExt.DaubleTableToString(p);
         }
 
         public string CurveInterpolation(string arg1, string arg2)
         {
             throw new NotImplementedException();
+        }
+
+        public string Addition(string arg1, string[] arg2)
+        {
+            double result = arg1.GetDouble();
+            foreach (var arg in arg2)
+            {
+                result += arg.GetDouble();
+            }
+            return result.ToString();
+        }
+
+        public string Multiplication(string arg1, string[] arg2)
+        {
+
+            double result = arg1.GetDouble();
+            foreach (var arg in arg2)
+            {
+                result *= arg.GetDouble();
+            }
+            return result.ToString();
+        }
+
+        public string Division(string arg1, string[] arg2)
+        {
+
+            double result = arg1.GetDouble();
+            foreach (var arg in arg2)
+            {
+                if(arg.GetDouble() != 0)
+                result /= arg.GetDouble();
+            }
+            return result.ToString();
+        }
+
+        public string Subtraction(string arg1, string[] arg2)
+        {
+
+            double result = arg1.GetDouble();
+            foreach (var arg in arg2)
+            {
+                result -= arg.GetDouble();
+            }
+            return result.ToString();
         }
     }
 }

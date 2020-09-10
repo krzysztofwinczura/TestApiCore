@@ -6,7 +6,7 @@ namespace System
     {
         public static double GetDouble(this string s)
         {
-            double.TryParse(s, out double d);
+            double.TryParse(s, System.Globalization.NumberStyles.Any, System.Globalization.CultureInfo.InvariantCulture, out double d);
             return d;
         }
 
