@@ -1,4 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Logging;
+using System;
 using WebApplicationApi.BL;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
@@ -10,80 +12,183 @@ namespace WebApplicationApi.Controllers
     public class TestApiController : ControllerBase
     {
         private readonly IActions _iActions;
+        private readonly ILogger<TestApiController> _logger;
 
-        public TestApiController(IActions iActions)
+        public TestApiController(
+            ILogger<TestApiController> logger,
+            IActions iActions)
         {
             _iActions = iActions;
+            _logger = logger;
         }
 
         [HttpGet("byAddition")]
         [ActionName("Addition")]
-        public string GetAddition([FromQuery] string firstArgument, [FromQuery] string secondArgument)
+        public IActionResult GetAddition([FromQuery] string firstArgument, [FromQuery] string secondArgument)
         {
-            return _iActions.Addition(firstArgument, secondArgument);
+            try
+            {
+                return Ok(_iActions.Addition(firstArgument, secondArgument));
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, string.Empty);
+                return StatusCode(500, new ErrorResponse
+                {
+                    Error = "ServerError",
+                    Description = ex.Message
+                });
+            }
         }
 
         [HttpGet("byAdditionList")]
         [ActionName("AdditionList")]
-        public string GetAdditionList([FromQuery] string firstArgument, [FromQuery] string[] secondArgument)
+        public IActionResult GetAdditionList([FromQuery] string firstArgument, [FromQuery] string[] secondArgument)
         {
-            return _iActions.Addition(firstArgument, secondArgument);
+            try
+            {
+                return Ok(_iActions.Addition(firstArgument, secondArgument));
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, string.Empty);
+                return StatusCode(500, new ErrorResponse { Error = "ServerError", Description = ex.Message });
+            }
         }
 
         [HttpGet("bySubtraction")]
         [ActionName("Subtraction")]
-        public string GetSubtraction([FromQuery] string firstArgument, [FromQuery] string secondArgument)
+        public IActionResult GetSubtraction([FromQuery] string firstArgument, [FromQuery] string secondArgument)
         {
-            return _iActions.Subtraction(firstArgument, secondArgument);
+            try
+            {
+                return Ok(_iActions.Subtraction(firstArgument, secondArgument));
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, string.Empty);
+                return StatusCode(500, new ErrorResponse { Error = "ServerError", Description = ex.Message });
+            }
         }
 
         [HttpGet("bySubtractionList")]
         [ActionName("SubtractionList")]
-        public string GetSubtractionList([FromQuery] string firstArgument, [FromQuery] string[] secondArgument)
+        public IActionResult GetSubtractionList([FromQuery] string firstArgument, [FromQuery] string[] secondArgument)
         {
-            return _iActions.Subtraction(firstArgument, secondArgument);
+            try
+            {
+                return Ok(_iActions.Subtraction(firstArgument, secondArgument));
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, string.Empty);
+                return StatusCode(500, new ErrorResponse { Error = "ServerError", Description = ex.Message });
+            }
         }
 
         [HttpGet("byMultiplication")]
         [ActionName("Multiplication")]
-        public string GetMultiplication([FromQuery] string firstArgument, [FromQuery] string secondArgument)
+        public IActionResult GetMultiplication([FromQuery] string firstArgument, [FromQuery] string secondArgument)
         {
-            return _iActions.Multiplication(firstArgument, secondArgument);
+            try
+            {
+                return Ok(_iActions.Multiplication(firstArgument, secondArgument));
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, string.Empty);
+                return StatusCode(500, new ErrorResponse { Error = "ServerError", Description = ex.Message });
+            }
         }
 
-        [HttpGet("byMultiplicationList")]
+        [HttpPost("byMultiplicationList")]
         [ActionName("MultiplicationList")]
-        public string GetMultiplicationList([FromQuery] string firstArgument, [FromQuery] string[] secondArgument)
+        public IActionResult GetMultiplicationList([FromQuery] string firstArgument, [FromQuery] string[] secondArgument)
         {
-            return _iActions.Multiplication(firstArgument, secondArgument);
+            try
+            {
+                return Ok(_iActions.Multiplication(firstArgument, secondArgument));
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, string.Empty);
+                return StatusCode(500, new ErrorResponse { Error = "ServerError", Description = ex.Message });
+            }
         }
 
         [HttpGet("byDivision")]
         [ActionName("Division")]
-        public string GetDivision([FromQuery] string firstArgument, [FromQuery] string secondArgument)
+        public IActionResult GetDivision([FromQuery] string firstArgument, [FromQuery] string secondArgument)
         {
-            return _iActions.Division(firstArgument, secondArgument);
+            try
+            {
+                return Ok(_iActions.Division(firstArgument, secondArgument));
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, string.Empty);
+                return StatusCode(500, new ErrorResponse { Error = "ServerError", Description = ex.Message });
+            }
         }
 
         [HttpGet("byDivisionList")]
         [ActionName("DivisionList")]
-        public string GetDivisionList([FromQuery] string firstArgument, [FromQuery] string[] secondArgument)
+        public IActionResult GetDivisionList([FromQuery] string firstArgument, [FromQuery] string[] secondArgument)
         {
-            return _iActions.Division(firstArgument, secondArgument);
+            try
+            {
+                return Ok(_iActions.Division(firstArgument, secondArgument));
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, string.Empty);
+                return StatusCode(500, new ErrorResponse { Error = "ServerError", Description = ex.Message });
+            }
         }
 
         [HttpGet("byCurveApproximation")]
         [ActionName("CurveApproximation")]
-        public string GetCurveApproximation([FromQuery] string firstArgument, [FromQuery] string secondArgument)
+        public IActionResult GetCurveApproximation([FromQuery] string firstArgument, [FromQuery] string secondArgument)
         {
-            return _iActions.CurveApproximation(firstArgument, secondArgument);
+            try
+            {
+                return Ok(_iActions.CurveApproximation(firstArgument, secondArgument));
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, string.Empty);
+                return StatusCode(500, new ErrorResponse { Error = "ServerError", Description = ex.Message });
+            }
         }
 
         [HttpGet("byCurveInterpolation")]
         [ActionName("CurveInterpolation")]
-        public string GetCurveInterpolation([FromQuery] string firstArgument, [FromQuery] string secondArgument)
+        public IActionResult GetCurveInterpolation([FromQuery] string firstArgument, [FromQuery] string secondArgument)
         {
-            return _iActions.CurveInterpolation(firstArgument, secondArgument);
+            try
+            {
+                return Ok(_iActions.CurveInterpolation(firstArgument, secondArgument));
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, string.Empty);
+                return StatusCode(500, new ErrorResponse { Error = "ServerError", Description = ex.Message });
+            }
+        }
+
+        [HttpPost("byCurveInterpolation")]
+        [ActionName("CurveInterpolation")]
+        public IActionResult GetCurveInterpolation([FromBody] PointXy[] pointXy)
+        {
+            try
+            {
+                return Ok(_iActions.CurveInterpolation(pointXy));
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, string.Empty);
+                return StatusCode(500, new ErrorResponse { Error = "ServerError", Description = ex.Message });
+            }
         }
     }
 }

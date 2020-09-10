@@ -67,7 +67,7 @@ namespace WebApplicationApi.BL
             double result = arg1.GetDouble();
             foreach (var arg in arg2)
             {
-                if(arg.GetDouble() != 0)
+                if (arg.GetDouble() == 0) return "Cannot divide by zero";
                 result /= arg.GetDouble();
             }
             return result.ToString();
@@ -82,6 +82,11 @@ namespace WebApplicationApi.BL
                 result -= arg.GetDouble();
             }
             return result.ToString();
+        }
+
+        public object CurveInterpolation(PointXy[] pointXy)
+        {
+            throw new NotImplementedException();
         }
     }
 }
