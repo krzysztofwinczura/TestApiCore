@@ -52,7 +52,6 @@ namespace WebApplicationApi.BL
 
         public string Multiplication(string arg1, string[] arg2)
         {
-
             double result = arg1.GetDouble();
             foreach (var arg in arg2)
             {
@@ -63,7 +62,6 @@ namespace WebApplicationApi.BL
 
         public string Division(string arg1, string[] arg2)
         {
-
             double result = arg1.GetDouble();
             foreach (var arg in arg2)
             {
@@ -75,7 +73,6 @@ namespace WebApplicationApi.BL
 
         public string Subtraction(string arg1, string[] arg2)
         {
-
             double result = arg1.GetDouble();
             foreach (var arg in arg2)
             {
@@ -84,9 +81,9 @@ namespace WebApplicationApi.BL
             return result.ToString();
         }
 
-        public object CurveInterpolation(PointXy[] pointXy)
+        public string CurveInterpolation(PointXy[] pointXy)
         {
-            throw new NotImplementedException();
+            return MathNet.MathNetExt.CurveInterpolation(pointXy);
         }
     }
 }

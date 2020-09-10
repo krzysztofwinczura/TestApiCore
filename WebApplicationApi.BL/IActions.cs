@@ -12,6 +12,6 @@
         string Subtraction(string arg1, string[] arg2);
         string CurveInterpolation(string arg1, string arg2);
         string CurveApproximation(string arg1, string arg2);
-        object CurveInterpolation(PointXy[] pointXy);
+        string CurveInterpolation(PointXy[] pointXy);
     }
 }

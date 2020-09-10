@@ -2,6 +2,9 @@
 using MathNet.Numerics.LinearAlgebra;
 using MathNet.Numerics.Optimization;
 using System;
+using System.Collections.Generic;
+using System.Text;
+using WebApplicationApi.BL;
 
 namespace MathNet
 {
@@ -37,6 +40,27 @@ namespace MathNet
             var B = Vector<double>.Build.DenseOfArray(b);
             var norm = (A - B).L2Norm(); // or (A - B).DotProduct(A - B)
             return norm * norm;
+        }
+
+        public static string CurveInterpolation(this PointXy[] pointXy)
+        {
+            var listX = new List<double>();
+            var listY = new List<double>();
+
+            foreach (PointXy point in pointXy)
+            {
+                listX.Add(point.PointX);
+                listY.Add(point.PointY);
+            }
+
+            var result = Interpolate.Linear(listX, listY);
+            StringBuilder sb = new StringBuilder();
+            for (var i = -9; i < 10; i++)
+            {
+                sb.AppendFormat("[X: {0} ; Y: {1}]", i, result.Interpolate(i));
+                sb.AppendLine();
+            }
+            return sb.ToString()?.TrimEnd();
         }
     }
 }
